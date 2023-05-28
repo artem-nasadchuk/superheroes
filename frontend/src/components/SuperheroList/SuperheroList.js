@@ -22,13 +22,9 @@ const SuperheroList = () => {
     <div className="container">
       <h1>Superheroes</h1>
       <div className="columns is-multiline is-centered">
-        {superheroes.map(({ id, nickname }) => (
-          <div className="column is-one-five" key={id}>
-            <SuperheroCard 
-              nickname={nickname} 
-              id={id}
-              onSetSuperheroes={setSuperheroes} 
-            />
+        {superheroes.map((superhero) => (
+          <div className="column is-one-five" key={superhero.id}>
+            <SuperheroCard />
           </div>
         ))}
       </div>

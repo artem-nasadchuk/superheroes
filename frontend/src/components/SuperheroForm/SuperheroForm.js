@@ -9,46 +9,50 @@ export const SuperheroForm = () => {
   const [originDescription, setOriginDescription] = useState('');
   const [superpowers, setSuperpowers] = useState('');
   const [catchPhrase, setCatchPhrase] = useState('');
-  const [isCreated, setIsCreated] = useState(false);
   const [newSuperhero, setNewSuperhero] = useState([]);
+  const [images, setImages] = useState([]);
+  const [isCreated, setIsCreated] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const superheroData = {
-      nickname,
-      realName,
-      originDescription,
-      superpowers,
-      catchPhrase,
-    };
+    const formData = new FormData();
+    formData.append('nickname', nickname);
+    formData.append('realName', realName);
+    formData.append('originDescription', originDescription);
+    formData.append('superpowers', superpowers);
+    formData.append('catchPhrase', catchPhrase);
+  
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images', images[i]);
+    }
 
     try {
-      const response = await axios.post('http://localhost:5000/superheroes', superheroData);
+      console.log(images);
+      const response = await axios.post('http://localhost:5000/superheroes', formData);
       const createdSuperhero = response.data;
-      // console.log(createdSuperhero);
       setNewSuperhero(createdSuperhero);
-      console.log(newSuperhero);
+
       // Clear the form fields
       setNickname('');
       setRealName('');
       setOriginDescription('');
       setSuperpowers('');
       setCatchPhrase('');
-
-      setIsCreated(true); 
+      setImages([]);
+      setIsCreated(true);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const handleImageChange = (e) => {
+    const selectedImages = e.target.files;
+    setImages(selectedImages);
+  };
+
   if (isCreated) {
-    return (
-      <div className="container">
-        {console.log(newSuperhero)}
-        <SuperheroCard nickname={newSuperhero.nickname} id={newSuperhero.id} />
-      </div>
-    )
+    return <SuperheroCard superhero={newSuperhero} />
   }
 
   return (
@@ -56,7 +60,10 @@ export const SuperheroForm = () => {
       <div className="columns is-centered">
         <div className="column is-half">
           <h2 className="title is-4 has-text-centered">Create Superhero</h2>
-          <form onSubmit={handleSubmit}>
+          <form 
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
             <div className="field">
               <label className="label">Nickname:</label>
               <div className="control">
@@ -109,6 +116,18 @@ export const SuperheroForm = () => {
                   type="text"
                   value={catchPhrase}
                   onChange={(e) => setCatchPhrase(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Images:</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="file"
+                  name="images"
+                  multiple
+                  onChange={handleImageChange}
                 />
               </div>
             </div>

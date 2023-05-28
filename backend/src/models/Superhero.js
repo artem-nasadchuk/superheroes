@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../utils/db.js';
+import { Image } from './Image.js';
 
 const Superhero = sequelize.define(
   'Superhero',
@@ -24,9 +25,9 @@ const Superhero = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    images: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
     },
   },
   {
@@ -34,5 +35,11 @@ const Superhero = sequelize.define(
     timestamps: true,
   },
 );
+
+Superhero.hasMany(Image, {
+  foreignKey: 'superheroId',
+  onDelete: 'CASCADE',
+  hooks: true,
+});
 
 export default Superhero;
