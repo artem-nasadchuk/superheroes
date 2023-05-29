@@ -6,10 +6,8 @@ async function createSuperhero(req, res) {
     nickname, realName, originDescription, superpowers, catchPhrase, images,
   } = req.body;
 
-  console.log(req.files);
   const imagesPath = req.files.map((image) => image.path);
 
-  console.log(images);
   try {
     const superhero = await Superhero.create({
       nickname,
@@ -28,15 +26,11 @@ async function createSuperhero(req, res) {
 }
 
 async function getAllSuperheroes(req, res) {
-  const { page = 1, limit = 5 } = req.query;
-  const offset = (page - 1) * limit;
+  // const { page = 1, limit = 5 } = req.query;
+  // const offset = (page - 1) * limit;
 
   try {
-    const superheroes = await Superhero.findAll({
-      limit,
-      offset,
-      include: [Image],
-    });
+    const superheroes = await Superhero.findAll();
 
     res.json(superheroes);
   } catch (error) {

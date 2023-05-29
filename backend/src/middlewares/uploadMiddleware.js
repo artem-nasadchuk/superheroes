@@ -3,7 +3,7 @@ import multer from 'multer';
 export const uploadMiddleware = (maxFiles) => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './backend/src/uploads');
+      cb(null, './frontend/src/uploads');
     },
     filename: (req, file, cb) => {
       const filename = file.originalname;
@@ -24,7 +24,6 @@ export const uploadMiddleware = (maxFiles) => {
       } else if (err) {
         return res.status(500).json({ error: 'Failed to upload files.' });
       }
-      console.log('Uploaded files:', req.files);
       next();
     });
   };

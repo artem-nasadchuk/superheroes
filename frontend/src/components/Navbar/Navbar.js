@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../logo/logo.png';
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
   return (
@@ -10,12 +11,12 @@ export const Navbar = () => {
         </a>
       </div>
       <div className="navbar-end">
-        <a className="navbar-item">
+        <Link to="/add" className="navbar-item">
           Add Superhero
-        </a>
-        <a className="navbar-item">
+        </Link>
+        <Link to="/all" className="navbar-item">
           All Superheroes
-        </a>
+        </Link>
       </div>
     </nav>
   );

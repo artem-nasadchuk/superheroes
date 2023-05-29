@@ -31,7 +31,7 @@ export const SuperheroForm = () => {
       console.log(images);
       const response = await axios.post('http://localhost:5000/superheroes', formData);
       const createdSuperhero = response.data;
-      setNewSuperhero(createdSuperhero);
+      setNewSuperhero(prev => [...prev, createdSuperhero]);
 
       // Clear the form fields
       setNickname('');
@@ -52,7 +52,7 @@ export const SuperheroForm = () => {
   };
 
   if (isCreated) {
-    return <SuperheroCard superhero={newSuperhero} />
+    return <SuperheroCard superhero={newSuperhero[0]} onSetSuperheroes={setNewSuperhero} />
   }
 
   return (
