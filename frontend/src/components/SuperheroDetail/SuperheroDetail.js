@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import SwiperCore, { Navigation } from 'swiper';
+
+SwiperCore.use([Navigation]);
 
 const SuperheroDetail = ({ superhero }) => {
   // const { id } = useParams();
@@ -30,7 +33,11 @@ const SuperheroDetail = ({ superhero }) => {
       <div className="column is-6">
         <div className="card">
           <div className="card-image">
-            <Swiper spaceBetween={10} slidesPerView={1}>
+            <Swiper
+              spaceBetween={10}
+              slidesPerView={1}
+              navigation
+            >
               {superhero.images.map((image, index) => (
                 <SwiperSlide key={index}>
                   <img src={image} alt={superhero.nickname} />
