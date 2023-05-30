@@ -50,94 +50,95 @@ export const SuperheroForm = () => {
     const selectedImages = e.target.files;
     setImages(selectedImages);
   };
-
-  if (isCreated) {
-    return <SuperheroCard superhero={newSuperhero[0]} onSetSuperheroes={setNewSuperhero} />
-  }
+  console.log('1111');
 
   return (
     <div className="container">
       <div className="columns is-centered">
-        <div className="column is-half">
-          <h2 className="title is-4 has-text-centered">Create Superhero</h2>
-          <form 
-            onSubmit={handleSubmit}
-            encType="multipart/form-data"
-          >
-            <div className="field">
-              <label className="label">Nickname:</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  value={nickname}
-                  onChange={(e) => setNickname(e.target.value)}
-                  required
-                />
+        {isCreated ? (
+          <SuperheroCard superhero={newSuperhero[0]} onSetSuperheroes={setNewSuperhero} />
+        ) : (
+          <div className="column is-half">
+            <h2 className="title is-4 has-text-centered">Create Superhero</h2>
+            <form 
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+            >
+              <div className="field">
+                <label className="label">Nickname:</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    value={nickname}
+                    onChange={(e) => setNickname(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Real Name:</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  value={realName}
-                  onChange={(e) => setRealName(e.target.value)}
-                />
+              <div className="field">
+                <label className="label">Real Name:</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    value={realName}
+                    onChange={(e) => setRealName(e.target.value)}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Origin Description:</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={originDescription}
-                  onChange={(e) => setOriginDescription(e.target.value)}
-                ></textarea>
+              <div className="field">
+                <label className="label">Origin Description:</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={originDescription}
+                    onChange={(e) => setOriginDescription(e.target.value)}
+                  ></textarea>
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Superpowers:</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  value={superpowers}
-                  onChange={(e) => setSuperpowers(e.target.value)}
-                />
+              <div className="field">
+                <label className="label">Superpowers:</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    value={superpowers}
+                    onChange={(e) => setSuperpowers(e.target.value)}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Catchphrase:</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="text"
-                  value={catchPhrase}
-                  onChange={(e) => setCatchPhrase(e.target.value)}
-                />
+              <div className="field">
+                <label className="label">Catchphrase:</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    value={catchPhrase}
+                    onChange={(e) => setCatchPhrase(e.target.value)}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Images:</label>
-              <div className="control">
-                <input
-                  className="input"
-                  type="file"
-                  name="images"
-                  multiple
-                  onChange={handleImageChange}
-                />
+              <div className="field">
+                <label className="label">Images:</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="file"
+                    name="images"
+                    multiple
+                    onChange={handleImageChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field is-grouped is-grouped-centered">
-              <div className="control">
-                <button className="button is-dark" type="submit">Create</button>
+              <div className="field is-grouped is-grouped-centered">
+                <div className="control">
+                  <button className="button is-dark" type="submit">Create</button>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

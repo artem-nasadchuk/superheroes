@@ -11,10 +11,10 @@ export const Navbar = () => {
         </a>
       </div>
       <div className="navbar-end">
-        <Link to="/add" className="navbar-item">
+        <Link to="/superheroes/new" className="navbar-item">
           Add Superhero
         </Link>
-        <Link to="/all" className="navbar-item">
+        <Link to="/superheroes" className="navbar-item">
           All Superheroes
         </Link>
       </div>

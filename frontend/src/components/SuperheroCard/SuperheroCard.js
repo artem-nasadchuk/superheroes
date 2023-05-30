@@ -28,13 +28,15 @@ export const SuperheroCard = ({ superhero, onSetSuperheroes }) => {
     return <SuperheroDetail superhero={superhero} />
   }
 
+  console.log(superhero.images);
+
   return (
     <div className="card">
       <div className="card-image">
         <figure className="image">
           <img
             className="img"
-            src="../../uploads/batman-arkham-origins-i97852.jpeg"
+            src={superhero.images[0]}
             alt="Placeholder"
           />
         </figure>

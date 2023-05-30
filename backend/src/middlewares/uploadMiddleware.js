@@ -3,10 +3,10 @@ import multer from 'multer';
 export const uploadMiddleware = (maxFiles) => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './frontend/src/uploads');
+      cb(null, './frontend/public/uploads');
     },
     filename: (req, file, cb) => {
-      const filename = file.originalname;
+      const filename = `${Date.now()}-${file.originalname}`;
       cb(null, filename);
     },
   });

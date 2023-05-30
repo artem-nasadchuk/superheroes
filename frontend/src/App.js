@@ -10,8 +10,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/all" element={<SuperheroList />} />
-        <Route path="/add" element={<SuperheroForm />} />
+        <Route path="/superheroes" element={<SuperheroList />} />
+        <Route path="/superheroes/new" element={<SuperheroForm />} />
       </Routes>
     </div>
   );

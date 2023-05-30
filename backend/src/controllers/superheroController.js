@@ -6,7 +6,10 @@ async function createSuperhero(req, res) {
     nickname, realName, originDescription, superpowers, catchPhrase, images,
   } = req.body;
 
-  const imagesPath = req.files.map((image) => image.path);
+  const imagesPath = req.files.map((image) => {
+    console.log(image);
+    return `uploads/${image.filename}`;
+  });
 
   try {
     const superhero = await Superhero.create({
