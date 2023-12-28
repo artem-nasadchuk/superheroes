@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { SuperheroCard } from './components/SuperheroCard';
 import { SuperheroForm } from './components/SuperheroForm';
 import SuperheroList from './components/SuperheroList/SuperheroList';
+import SuperheroDetail from './components/SuperheroDetail/SuperheroDetail';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<h1>Home</h1>} />
         <Route path="/superheroes" element={<SuperheroList />} />
         <Route path="/superheroes/new" element={<SuperheroForm />} />
+        <Route path="/superheroes/:id" element={<SuperheroDetail />} />
       </Routes>
     </div>
   );

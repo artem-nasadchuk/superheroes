@@ -5,7 +5,7 @@ import { useState } from 'react';
 import SuperheroDetail from '../SuperheroDetail/SuperheroDetail';
 
 export const SuperheroCard = ({ superhero, onSetSuperheroes }) => {
-  const [isDetailsOpen, setIsDetailsOPen] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const handleDeleteSuperhero = async (superheroId) => {
     try {
       await axios.delete(`http://localhost:5000/superheroes/${superheroId}`);
@@ -33,12 +33,8 @@ export const SuperheroCard = ({ superhero, onSetSuperheroes }) => {
   return (
     <div className="card">
       <div className="card-image">
-        <figure className="image">
-          <img
-            className="img"
-            src={superhero.images[0]}
-            alt="Placeholder"
-          />
+        <figure className="image is-2by3">
+          <img className="is-square" src={superhero.images[0]} alt="Superhero" />
         </figure>
       </div>
       <div className="card-content">
@@ -49,12 +45,11 @@ export const SuperheroCard = ({ superhero, onSetSuperheroes }) => {
         </div>
       </div>
       <footer className="card-footer">
-        <Link 
-          to="/" 
+        <Link
+          to={`/superheroes/${superhero.id}`}
           className="card-footer-item"
           onClick={(event) => {
-            event.preventDefault();
-            setIsDetailsOPen(true);
+            setIsDetailsOpen(true);
           }}
         >
           Details
@@ -64,8 +59,7 @@ export const SuperheroCard = ({ superhero, onSetSuperheroes }) => {
           className="card-footer-item"
           onClick={(event) => {
             event.preventDefault();
-
-            handleDeleteSuperhero(superhero.id)
+            handleDeleteSuperhero(superhero.id);
           }}
         >
           Delete
